@@ -49,7 +49,9 @@
 # The Graph is connected and all nodes can be visited starting from the given node.
 
 # Solution: 
-# Since the graph is guaranteed to be a cycle you can start at one node and go to its neighbor and add it to the hashmap
+# Since the graph is connected it is guaranteed to be a cycle you can start at one node and go to its neighbor and add it to the hashmap
+# use the hashmap to keep track of which nodes you already visited
+# then create a new node with the same value as the target node and copy over the neighbors
 # Time: O(n) = Edges + Vertices
 
 
