@@ -51,6 +51,7 @@
 # Note: defaultdict is a dict but better error handling
 # Note: Sorted() returns a new list while .sort() does not return a new list and sorts the original list
 # Time: O(N∗M∗Log(M)) because it takes M*Log(M) to sort and you are looping through every word
+
 from collections import defaultdict
 from typing import List
 
