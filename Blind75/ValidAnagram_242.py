@@ -27,7 +27,10 @@
 # Follow up: What if the inputs contain Unicode characters? How would you adapt your solution to such a case?
 
 
-class Solution:
+from collections import defaultdict
+
+
+class Solution1: #O(nlogn)
     def isAnagram(self, s: str, t: str) -> bool:
         sortedWord1 = sorted(s)
         sortedWord2 = sorted(t)
@@ -35,3 +38,21 @@ class Solution:
         if sortedWord1 == sortedWord2:
             return True
         return False
+
+class Solution2: #O(n)
+    def isAnagram(self, s: str, t: str) -> bool:
+        if len(s) != len(t):
+            return False
+        
+        countS,  countT= defaultdict(), defaultdict()
+
+        for i in range(len(s)):
+            countS[s[i]] = 1 + countS.get(s[i], 0)
+            countT[t[i]] = 1 + countT.get(t[i], 0)
+
+        for c in countS:
+            if countS[c] != countT.get(c, 0):
+                return False
+            
+        return True
+
