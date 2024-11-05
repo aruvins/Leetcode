@@ -38,6 +38,7 @@ class Solution:
     def predictPartyVictory(self, senate: str) -> str:
         queue_R = deque()
         queue_D = deque()
+        
 
         for i, c in enumerate(senate):
             if c == 'R':
