@@ -22,5 +22,4 @@ class Solution:
             else: 
                 stack.append(int(tokens[i]))
             
-        res = int(stack.pop())
-        return res
+        return int(stack.pop())
