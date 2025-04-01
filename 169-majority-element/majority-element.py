@@ -1,9 +1,13 @@
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        freq = {}
+        #Boyer-Moore Majority Vote Algorithm
+        res = majority = 0
 
         for n in nums:
-            freq[n] = freq.get(n,0) + 1
+            if majority == 0:
+                res = n
 
-        return max(freq, key=freq.get)
+            majority += 1 if n == res else -1
+
+        return res
         
