@@ -1,10 +1,12 @@
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
-        res = ''
-        maxLen = max(len(word1), len(word2))
+        returnStr = []
+        i = 0
         
-        for i in range(maxLen):
-            res += word1[i: i+1]
-            res += word2[i: i+1]
-
-        return res
+        while i < len(word1) or i < len(word2):
+            if i < len(word1):
+                returnStr.append(word1[i])
+            if i < len(word2):
+                returnStr.append(word2[i])
+            i += 1
+        return ''.join(returnStr) #converts from array to string
