@@ -1,13 +1,12 @@
 class Solution:
     def increasingTriplet(self, nums: List[int]) -> bool:
-        smallestSeen = float('inf')
-        secondSmallest = float('inf')
+        smallestSeen = secondSmallest = float('inf')
 
-        for i in range(len(nums)):
-            if nums[i] <= smallestSeen:
-                smallestSeen = nums[i]
-            elif nums[i] <= secondSmallest:
-                secondSmallest = nums[i]
+        for n in nums:
+            if n <= smallestSeen:
+                smallestSeen = n
+            elif n <= secondSmallest:
+                secondSmallest = n
             else:
                 return True
 
