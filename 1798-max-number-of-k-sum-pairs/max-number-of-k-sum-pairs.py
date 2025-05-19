@@ -1,17 +1,15 @@
+from collections import Counter 
 class Solution:
     def maxOperations(self, nums: List[int], k: int) -> int:
-        nums.sort()
-        l,r = 0, len(nums) - 1
+        hmap = {}
         count = 0
 
-        while l<r:
-            if nums[r]+nums[l] == k:
-                count +=1
-                r -= 1
-                l += 1
-            elif nums[r]+nums[l] < k:
-                l += 1
-            elif nums[r]+nums[l] > k:
-                r -= 1
+        for i in range(len(nums)):
+            if hmap.get(k-nums[i],0) > 0:
+                count += 1
+                hmap[k-nums[i]] -= 1
+            else:
+                hmap[nums[i]] = hmap.get(nums[i], 0) + 1
 
         return count
+
