@@ -8,7 +8,7 @@ class Solution:
         while r < len(t):
             if s[l] == t[r]:
                 l += 1
-            if l >= len(s):
+            if l == len(s):
                 return True
             r += 1
 
