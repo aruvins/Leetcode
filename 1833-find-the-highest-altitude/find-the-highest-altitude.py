@@ -1,9 +1,10 @@
 class Solution:
     def largestAltitude(self, gain: List[int]) -> int:
-        res = cur = 0
+        curSum = 0
+        maxSum = 0
 
-        for n in gain:
-            cur += n
-            res = max(res,cur)
+        for i in range(len(gain)):
+            curSum += gain[i]
+            maxSum = max(curSum, maxSum)
 
-        return res
+        return maxSum
