@@ -8,9 +8,9 @@ class Solution:
         
         transposed = list(zip(*grid))
 
-        count = 0
+        matching = 0
         for col in transposed:
-            count += hmap[tuple(col)]
+            matching += hmap[tuple(col)]
 
-        return count
+        return matching
 
