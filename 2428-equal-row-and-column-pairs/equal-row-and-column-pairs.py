@@ -1,5 +1,5 @@
-from collections import Counter
-import numpy
+from collections import Counter, defaultdict
+from typing import List
 class Solution:
     def equalPairs(self, grid: List[List[int]]) -> int:
         hmap = defaultdict(int)
