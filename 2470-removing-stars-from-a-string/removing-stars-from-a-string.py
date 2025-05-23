@@ -3,9 +3,9 @@ class Solution:
         stack = []
 
         for c in s:
-            stack.append(c)
             if c == '*':
                 stack.pop()
-                stack.pop()
+            else:
+                stack.append(c)
 
         return ''.join(stack)
