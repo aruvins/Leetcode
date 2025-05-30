@@ -6,22 +6,22 @@
 #         self.right = right
 class Solution:
     def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
-        self.numOfPaths = 0
-        self.dfs(root,targetSum)
-        return self.numOfPaths
+        def dfs(root, ps):
+            if not root:
+                return
 
-    def dfs(self, node, target):
-        if node is None:
-            return
-        self.test(node,target)
-        self.dfs(node.left, target)
-        self.dfs(node.right, target)
+            cs = ps + root.val
+            x = cs - targetSum
 
-    def test(self, node, target):
-        if node is None:
-            return
-        if node.val == target:
-            self.numOfPaths += 1
+            if x in freq:
+                self.count += freq[x]
+            freq[cs] = freq.get(cs,0) + 1
 
-        self.test(node.left, target - node.val)
-        self.test(node.right, target - node.val)
+            dfs(root.left, cs)
+            dfs(root.right, cs)
+            freq[cs] -= 1
+
+        self.count = 0
+        freq = {0:1}
+        dfs(root, 0)
+        return self.count
