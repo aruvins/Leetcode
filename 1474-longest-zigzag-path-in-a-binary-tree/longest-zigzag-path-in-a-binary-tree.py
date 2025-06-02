@@ -6,7 +6,7 @@
 #         self.right = right
 class Solution:
     def longestZigZag(self, root: Optional[TreeNode]) -> int:
-        return max(self.helper(root.left, True, 0),self.helper(root.right, False, 0))
+        return max(self.helper(root.left, True, 0), self.helper(root.right, False, 0))
 
     def helper(self, root, isLeft, depth):
         if not root: return depth
@@ -17,6 +17,7 @@ class Solution:
                 self.helper(root.right, False, depth + 1),
                 self.helper(root.left, True, 0)
             )
+
         else:
             depth = max(
                 depth,
