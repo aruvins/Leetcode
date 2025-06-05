@@ -11,7 +11,7 @@ class Solution:
         
         if root.val == val:
             return root
-        elif val < root.val:
+        elif root.val > val:
             return self.searchBST(root.left, val)
         else:
             return self.searchBST(root.right, val)
