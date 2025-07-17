@@ -1,13 +1,5 @@
+from collections import Counter
 class Solution:
     def majorityElement(self, nums: List[int]) -> int:
-        #Boyer-Moore Majority Vote Algorithm
-        res = majority = 0
-
-        for n in nums:
-            if majority == 0:
-                res = n
-
-            majority += 1 if n == res else -1
-
-        return res
-        
+        freq = Counter(nums)
+        return max(freq, key=freq.get)
