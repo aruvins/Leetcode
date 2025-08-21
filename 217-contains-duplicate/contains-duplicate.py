@@ -1,44 +1,5 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        existsSet = set()
+        numsSet = set(nums)
 
-        for n in nums:
-            if n in existsSet:
-                return True
-            existsSet.add(n)
-
-        return False
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        # num_set = set()
-
-        # for n in nums:
-        #     if n in num_set:
-        #         return True
-        #     else:
-        #         num_set.add(n)
-
-        # return False
+        return len(nums) != len(numsSet)
