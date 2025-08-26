@@ -1,8 +1,10 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        pair_idx = {}
+        pair_index = {}
 
-        for i,num in enumerate(nums):
-            if target - num in pair_idx:
-                return [i, pair_idx[target-num]]
-            pair_idx[num] = i
+        for i, val in enumerate(nums):
+            if target - val in pair_index:
+                return [i, pair_index[target- val]]
+            pair_index[val] = i
+
+        
