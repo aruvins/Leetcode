@@ -8,8 +8,11 @@ class Solution:
 
         # return solve(0, False)
 
-        dp = [*nums]
+        curSum = nums[0]
+        maxSum = nums[0]
 
-        for i in range(1, len(nums)):
-            dp[i] = max(nums[i], nums[i] + dp[i-1])
-        return max(dp)
+        for n in nums[1:]:
+            curSum = max(n, curSum + n)
+            maxSum = max(curSum, maxSum)
+
+        return maxSum
