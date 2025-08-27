@@ -1,13 +1,9 @@
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        curSum = 0
-        maxSubarray = float('-inf')
+        @cache
+        def solve(i, must_pick):
+            if i >= len(nums):
+                return 0 if must_pick else -inf
+            return max(nums[i] + solve(i+1, True), 0 if must_pick else solve(i+1, False))
 
-        for i in range(len(nums)):
-            curSum += nums[i]
-            maxSubarray = max(maxSubarray, curSum)
-
-            if curSum < 0:
-                curSum = 0
-
-        return maxSubarray
+        return solve(0, False)
