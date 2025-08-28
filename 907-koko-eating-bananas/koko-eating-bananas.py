@@ -7,16 +7,16 @@ class Solution:
 
             return hours <= h
 
-        l,r = 1, max(piles)
+        l, r = 1, max(piles)
 
         while l < r:
             k = (l+r)//2
-            
+
             if k_works(k):
-                r=k
+                r = k
             else:
                 l = k + 1
-        
+
         return l
 
             
