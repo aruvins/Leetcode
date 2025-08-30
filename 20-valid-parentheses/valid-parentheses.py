@@ -5,10 +5,11 @@ class Solution:
 
         for c in s:
             if c in endings:
-                if stack and stack[-1]== endings[c]:
+                if stack and stack[-1] == endings[c]:
                     stack.pop()
                 else:
                     return False
             else:
                 stack.append(c)
+
         return not stack
