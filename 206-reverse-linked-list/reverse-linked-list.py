@@ -14,5 +14,3 @@ class Solution:
             head = temp
 
         return node
-
-        
