@@ -8,10 +8,8 @@ class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
-
-        left = self.maxDepth(root.right)
-        right = self.maxDepth(root.left)
-        return max(left, right) + 1
+            
+        return max(self.maxDepth(root.right) + 1, self.maxDepth(root.left) + 1)
             
 
 
