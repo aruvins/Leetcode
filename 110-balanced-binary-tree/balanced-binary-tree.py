@@ -13,7 +13,7 @@ class Solution:
 
             l = dfs(node.left)
             r = dfs(node.right)
-            
+
             if l == -1:
                 return -1
                 
