@@ -9,7 +9,9 @@ class Solution:
         if not root:
             return 0
 
-        return max(self.maxDepth(root.right) + 1, self.maxDepth(root.left) + 1)
+        left = self.maxDepth(root.right)
+        right = self.maxDepth(root.left)
+        return max(left, right) + 1
             
 
 
