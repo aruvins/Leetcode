@@ -1,10 +1,14 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        pair_index = {}
+        hashMap = {} #number: index
 
-        for i, val in enumerate(nums):
-            if target - val in pair_index:
-                return [i, pair_index[target- val]]
-            pair_index[val] = i
+        for n in range(len(nums)):
+            if target - nums[n] in hashMap:
+                return [hashMap[target - nums[n]], n]
+
+            hashMap[nums[n]] = n
+
+        return -1
+
 
         
