@@ -13,9 +13,9 @@ class Solution:
             val1 = l1.val if l1 else 0
             val2 = l2.val if l2 else 0
 
-            total = val1 + val2 + carry
-            carry = total // 10
-            new_val = total % 10
+            new_val = val1 + val2 + carry
+            carry = new_val // 10 #if val >= 10 then carry = 1, less than carry = 0
+            new_val = new_val % 10 #grab only the ones place from the value
 
             cur.next = ListNode(new_val)
             cur = cur.next
