@@ -9,18 +9,8 @@ class Solution:
         if not root:
             return False
 
-        stack = [(root, root.val)]
+        if not root.left and not root.right:
+            return targetSum == root.val
 
-        while stack:
-            node, val = stack.pop()
-
-            if not node.left and not node.right and val == targetSum:
-                return True
-
-            if node.left:
-                stack.append((node.left, val + node.left.val))
-            if node.right:
-                stack.append((node.right, val + node.right.val))
-
-
-        return False
+        return (self.hasPathSum(root.left, targetSum - root.val) or
+                self.hasPathSum(root.right, targetSum - root.val))
