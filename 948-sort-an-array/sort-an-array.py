@@ -76,30 +76,39 @@ class Solution:
         n = len(nums)
 
         def heapify(n, root):
-            largest = root
+            smallest = root
             left = 2 * root + 1
             right = 2 * root + 2
 
-            #find largest among node and its children
-            if left < n and nums[left] > nums[largest]:
-                largest = left
+            #find smallest among node and its children
+            if left < n and nums[left] < nums[smallest]:
+                smallest = left
 
-            if right < n and nums[right] > nums[largest]:
-                largest = right
+            if right < n and nums[right] < nums[smallest]:
+                smallest = right
 
-            #if largest is not root, swap and recurse
-            if largest != root:
-                nums[root], nums[largest] = nums[largest], nums[root]
-                heapify(n, largest)
+            #if smallest is not root, swap and recurse
+            if smallest != root:
+                nums[root], nums[smallest] = nums[smallest], nums[root]
+                heapify(n, smallest)
 
-        for i in range(n//2 - 1, -1, -1): #mid point to first element
+
+        # Build min heap (Start from last non-leaf node (n//2 - 1))
+        for i in range(n//2 - 1, -1, -1):
             heapify(n, i)
 
-        for i in range(n - 1, 0, -1): 
-            nums[0], nums[i] = nums[i], nums[0]
-            heapify(i,0)
+        #extract from min heap
+        sortedArr = []
 
-        return nums
+        for end in range(n - 1, -1, -1):
+            #min element is at index 0
+            sortedArr.append(nums[0])
+            #move element to root
+            nums[0], nums[end] = nums[end], nums[0]
+            #restore heap property for reduced heap
+            heapify(end, 0)
+
+        return sortedArr
 
 
 
