@@ -3,8 +3,7 @@ class Solution:
         anagrams = defaultdict(list)
 
         for s in strs:
-            key = ''.join(sorted(s))
-
-            anagrams[key].append(s)
+            sortedStr = ''.join(sorted(s))
+            anagrams[sortedStr].append(s)
 
         return list(anagrams.values())
