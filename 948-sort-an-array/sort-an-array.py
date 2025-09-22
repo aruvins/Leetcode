@@ -73,51 +73,51 @@ class Solution:
 
 
         # # Heap Sort
-        n = len(nums)
+        # n = len(nums)
 
-        def heapify(n, root):
-            smallest = root
-            left = 2 * root + 1
-            right = 2 * root + 2
+        # def heapify(n, root):
+        #     smallest = root
+        #     left = 2 * root + 1
+        #     right = 2 * root + 2
 
-            #find smallest among node and its children
-            if left < n and nums[left] < nums[smallest]:
-                smallest = left
+        #     #find smallest among node and its children
+        #     if left < n and nums[left] < nums[smallest]:
+        #         smallest = left
 
-            if right < n and nums[right] < nums[smallest]:
-                smallest = right
+        #     if right < n and nums[right] < nums[smallest]:
+        #         smallest = right
 
-            #if smallest is not root, swap and recurse
-            if smallest != root:
-                nums[root], nums[smallest] = nums[smallest], nums[root]
-                heapify(n, smallest)
+        #     #if smallest is not root, swap and recurse
+        #     if smallest != root:
+        #         nums[root], nums[smallest] = nums[smallest], nums[root]
+        #         heapify(n, smallest)
 
 
-        # Build min heap (Start from last non-leaf node (n//2 - 1))
-        for i in range(n//2 - 1, -1, -1):
-            heapify(n, i)
+        # # Build min heap (Start from last non-leaf node (n//2 - 1))
+        # for i in range(n//2 - 1, -1, -1):
+        #     heapify(n, i)
 
-        #extract from min heap
-        sortedArr = []
+        # #extract from min heap
+        # sortedArr = []
 
-        for end in range(n - 1, -1, -1):
-            #min element is at index 0
-            sortedArr.append(nums[0])
-            #move element to root
-            nums[0], nums[end] = nums[end], nums[0]
-            #restore heap property for reduced heap
-            heapify(end, 0)
+        # for end in range(n - 1, -1, -1):
+        #     #min element is at index 0
+        #     sortedArr.append(nums[0])
+        #     #move element to root
+        #     nums[0], nums[end] = nums[end], nums[0]
+        #     #restore heap property for reduced heap
+        #     heapify(end, 0)
 
-        return sortedArr
+        # return sortedArr
 
 
 
 
         # Heap Sort (Built- in)
-        # heapq.heapify(nums)
-        # res = []
+        heapq.heapify(nums)
+        res = []
 
-        # while nums:
-        #     res.append(heapq.heappop(nums))
+        while nums:
+            res.append(heapq.heappop(nums))
 
-        # return res
+        return res
