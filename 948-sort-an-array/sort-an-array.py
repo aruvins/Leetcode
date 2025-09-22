@@ -1,3 +1,4 @@
+import heapq
 class Solution:
     def sortArray(self, nums: List[int]) -> List[int]:
         
@@ -37,34 +38,75 @@ class Solution:
 
 
 
-        # Merge Sort
-        def merge_sort(arr):
-            if len(arr) <= 1:
-                return arr      #base case: only one element - already solved
+        # # Merge Sort
+        # def merge_sort(arr):
+        #     if len(arr) <= 1:
+        #         return arr      #base case: only one element - already solved
 
-            mid = len(arr)//2
-            l = merge_sort(arr[:mid])       #sort left half
-            r = merge_sort(arr[mid:])       #sort right half
+        #     mid = len(arr)//2
+        #     l = merge_sort(arr[:mid])       #sort left half
+        #     r = merge_sort(arr[mid:])       #sort right half
 
-            return merge(l, r)
+        #     return merge(l, r)
 
-        def merge(l, r):
-            merged = []
-            i, j = 0, 0
+        # def merge(l, r):
+        #     merged = []
+        #     i, j = 0, 0
 
-            #merge 2 sorted lists (loop through index and add lower val to merged return array)
-            while i < len(l) and j < len(r):
-                if l[i] < r[j]:
-                    merged.append(l[i])
-                    i += 1
-                else:
-                    merged.append(r[j])
-                    j += 1
+        #     #merge 2 sorted lists (loop through index and add lower val to merged return array)
+        #     while i < len(l) and j < len(r):
+        #         if l[i] < r[j]:
+        #             merged.append(l[i])
+        #             i += 1
+        #         else:
+        #             merged.append(r[j])
+        #             j += 1
 
-            #append any leftovers
-            merged.extend(l[i:])
-            merged.extend(r[j:])
+        #     #append any leftovers
+        #     merged.extend(l[i:])
+        #     merged.extend(r[j:])
 
-            return merged
+        #     return merged
 
-        return merge_sort(nums)
+        # return merge_sort(nums)
+
+
+
+        # # Heap Sort
+        # n = len(nums)
+
+        # def heapify(n, i):
+        #     largest = i
+        #     left = 2 * i + 1
+        #     right = 2 * i + 2
+
+        #     if left < n and nums[left] > nums[largest]:
+        #         largest = left
+
+        #     if right < n and nums[right] > nums[largest]:
+        #         largest = right
+
+        #     if largest != i:
+        #         nums[i], nums[largest] = nums[largest], nums[i]
+        #         heapify(n, largest)
+
+        # for i in range(n//2 - 1, -1, -1):
+        #     heapify(n, i)
+
+        # for i in range(n - 1, 0, -1):
+        #     nums[0], nums[i] = nums[i], nums[0]
+        #     heapify(i,0)
+
+        # return nums
+
+
+
+
+        # Heap Sort (Built- in)
+        heapq.heapify(nums)
+        res = []
+
+        while nums:
+            res.append(heapq.heappop(nums))
+
+        return res
