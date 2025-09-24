@@ -8,4 +8,5 @@ class Solution:
             if len(heap) > k:
                 heapq.heappop(heap)
 
+                
         return [[x,y] for (d,x,y) in heap]
