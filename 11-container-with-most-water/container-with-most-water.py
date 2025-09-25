@@ -4,7 +4,7 @@ class Solution:
         l, r = 0, len(height) - 1
 
         while l < r:
-            maxWater = max(maxWater, min(height[l],height[r]) * (r-l))
+            maxWater = max(maxWater, min(height[l], height[r]) * (r - l))
 
             if height[l] < height[r]:
                 l += 1
@@ -12,3 +12,4 @@ class Solution:
                 r -= 1
 
         return maxWater
+
