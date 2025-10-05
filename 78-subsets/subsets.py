@@ -1,17 +1,14 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        def helper(index):
-            if index == len(nums):
-                return [[]]
+        res = []
 
-            allSubsets = helper(index + 1)
-            item = nums[index]
-            moreSubsets = []
+        def backtrack(start, path):
+            res.append(path[:])
 
-            for subset in allSubsets:
-                newSubset = subset + [item]
-                moreSubsets.append(newSubset)
+            for i in range(start, len(nums)):
+                path.append(nums[i])
+                backtrack(i + 1, path)
+                path.pop()
 
-            return allSubsets + moreSubsets
-
-        return helper(0)
+        backtrack(0, [])
+        return res
