@@ -3,21 +3,27 @@ class Solution:
         if len(s) <= 1:
             return s
 
-        def expand(left,right):
-            while left >= 0 and right < len(s) and s[left] == s[right]:
-                left -= 1
-                right += 1
-            return s[left + 1: right]
+        maxLen = 1
+        maxStr = s[0]
+        s = '#' + '#'.join(s) + '#'
+        dp = [0 for _ in range(len(s))]
+        center = 0
+        right = 0
 
-        max_str = s[0]
+        for i in range(len(s)):
+            if i < right:
+                dp[i] = min(right - i, dp[2*center - i])
+            
+            while i - dp[i] - 1 >= 0 and i + dp[i] + 1 < len(s) and s[i - dp[i] - 1] == s[i + dp[i] + 1]:
+                dp[i] += 1
 
-        for i in range(len(s) - 1):
-            odd = expand(i,i)
-            even = expand(i, i+ 1)
+            if i + dp[i] > right:
+                center = i
+                right = i + dp[i]
 
-            if len(odd) > len(max_str):
-                max_str = odd
-            if len(even) > len(max_str):
-                max_str = even
+            if dp[i] > maxLen:
+                maxLen = dp[i]
+                maxStr = s[i-dp[i]: i + dp[i]+1].replace("#",'')
 
-        return max_str
+        return maxStr
+
