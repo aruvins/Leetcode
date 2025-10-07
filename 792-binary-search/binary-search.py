@@ -3,12 +3,13 @@ class Solution:
         l, r = 0, len(nums) - 1
 
         while l <= r:
-            m = (l+r)//2
-            if target > nums[m]:
+            m = (l + r)//2
+
+            if nums[m] < target:
                 l = m + 1
-            elif target < nums[m]:
+            elif nums[m] > target:
                 r = m - 1
-            elif target == nums[m]:
+            else:
                 return m
 
-        return -1   
+        return -1
