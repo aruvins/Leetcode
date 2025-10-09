@@ -14,13 +14,7 @@ class Solution:
             l = dfs(node.left)
             r = dfs(node.right)
 
-            if l == -1:
-                return -1
-                
-            if r == -1:
-                return -1 
-
-            if abs(l - r) > 1:
+            if l == -1 or r == -1 or abs(l - r) > 1:
                 return -1
 
             return 1 + max(l,r)
