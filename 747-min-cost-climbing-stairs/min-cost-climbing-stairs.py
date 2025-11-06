@@ -1,8 +1,13 @@
+from functools import cache
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        cost.append(0)
+        
+        @cache
+        def dp(n):
+            if n < 2:
+                return cost[n]
 
-        for i in range(len(cost) - 3, -1, -1):
-            cost[i] += min(cost[i+1], cost[i+2])
+            return cost[n] + min(dp(n - 1), dp(n - 2))
 
-        return min(cost[0], cost[1])
+        length = len(cost)
+        return min(dp(length - 1), dp(length - 2))
