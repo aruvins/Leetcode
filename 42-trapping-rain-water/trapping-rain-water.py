@@ -1,20 +1,20 @@
 class Solution:
     def trap(self, height: List[int]) -> int:
-        l_wall = r_wall = 0
-        n = len(height)
-        max_left = [0] * n
-        max_right = [0] * n
+        if not height:
+            return 0
 
-        for i in range(n):
-            j = -i - 1  #fill in the array in reverse order
-            max_left[i] = l_wall
-            max_right[j] = r_wall 
-            l_wall = max(l_wall, height[i])
-            r_wall = max(r_wall, height[j])
+        l,r = 0, len(height) - 1
+        leftMax, rightMax = height[l], height[r]
+        res = 0
 
-        summ = 0
-        for i in range(n):
-            pot = min(max_left[i], max_right[i])
-            summ += max(0, pot - height[i])
+        while l < r:
+            if leftMax < rightMax:
+                l += 1
+                leftMax = max(leftMax, height[l])
+                res += leftMax - height[l]
+            else:
+                r -= 1
+                rightMax = max(rightMax, height[r])
+                res += rightMax - height[r]
 
-        return summ
+        return res
