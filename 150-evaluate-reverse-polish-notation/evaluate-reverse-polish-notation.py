@@ -6,20 +6,20 @@ class Solution:
             if e == "+":
                 x = stack.pop()
                 y = stack.pop()
-                stack.append(y+x)
+                stack.append(x+y)
             elif e == "-":
                 x = stack.pop()
                 y = stack.pop()
-                stack.append(y-x)
+                stack.append(y - x)
             elif e == "*":
                 x = stack.pop()
                 y = stack.pop()
-                stack.append(y*x)
+                stack.append(x*y)
             elif e == "/":
                 x = stack.pop()
                 y = stack.pop()
                 stack.append(int(y/x))
             else:
                 stack.append(int(e))
-
+                
         return stack[-1]
