@@ -19,6 +19,6 @@ class Solution:
                 largest = max(largest, node.val)
 
                 stack.append((node.left, largest))
-                stack.append((node.right,largest))
+                stack.append((node.right, largest))
 
         return goodNodes
