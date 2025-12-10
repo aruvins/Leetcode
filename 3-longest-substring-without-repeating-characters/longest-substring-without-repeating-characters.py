@@ -5,7 +5,7 @@ class Solution:
         maxLen = 0
 
         for i in range(len(s)):
-            while s[i] in charSet:
+            while s[i] in charSet and l <= i:
                 charSet.remove(s[l])
                 l += 1
             charSet.add(s[i])
