@@ -8,10 +8,11 @@ class Solution:
         if not head:
             return None
 
-        newHead = head
+        node = head
+
         if head.next:
-            newHead = self.reverseList(head.next)
+            node = self.reverseList(head.next)
             head.next.next = head
         head.next = None
 
-        return newHead
+        return node
