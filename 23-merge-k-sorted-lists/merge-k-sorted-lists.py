@@ -6,7 +6,7 @@
 class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
         dummy = ListNode()
-        cur = dummy
+        tail = dummy
         heap = []
         k = len(lists)
 
@@ -15,9 +15,9 @@ class Solution:
                 heapq.heappush(heap, (lists[i].val, i, lists[i]))
 
         while heap:
-            _, i , node = heapq.heappop(heap)
-            cur.next = node
-            cur = cur.next
+            _, i, node = heapq.heappop(heap)
+            tail.next = node
+            tail = tail.next
             node = node.next
             if node:
                 heapq.heappush(heap, (node.val, i, node))
