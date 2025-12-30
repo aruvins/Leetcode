@@ -1,41 +1,36 @@
 class Solution:
     def numMagicSquaresInside(self, grid: List[List[int]]) -> int:
-        ROWS, COLS = len(grid), len(grid[0])
+        ans = 0
+        m = len(grid)
+        n = len(grid[0])
+        for row in range(m - 2):
+            for col in range(n - 2):
+                if self._isMagicSquare(grid, row, col):
+                    ans += 1
+        return ans
 
-        def magic(r,c):
-            # Ensure 1 - 9
-            values = set() # Track duplicates
-            for i in range(r, r + 3):
-                for j in range(c, c + 3):
-                    if grid[i][j] in values or not (1 <= grid[i][j] <= 9):
-                        return 0
+    def _isMagicSquare(self, grid, row, col):
+        # The sequences are each repeated twice to account for
+        # the different possible starting points of the sequence
+        # in the magic square
+        sequence = "2943816729438167"
+        sequenceReversed = "7618349276183492"
 
-                    values.add(grid[i][j])
+        border = []
+        # Flattened indices for bordering elements of 3x3 grid
+        borderIndices = [0, 1, 2, 5, 8, 7, 6, 3]
+        for i in borderIndices:
+            num = grid[row + i // 3][col + (i % 3)]
+            border.append(str(num))
 
-            # Rows
-            for i in range(r, r + 3):
-                if sum(grid[i][c:c + 3]) != 15:
-                    return 0
+        borderConverted = "".join(border)
 
-            # Cols
-            for i in range(c, c + 3):
-                if (grid[r][i] + grid[r + 1][i] + grid[r + 2][i]) != 15:
-                    return 0
-
-            # Diagonals
-            if(
-                grid[r][c] + grid[r + 1][c + 1] + grid[r + 2][c + 2] != 15 or 
-                grid[r][c + 2] + grid[r + 1][c + 1] + grid[r + 2][c] != 15
-            ):
-                return 0
-            
-            return 1
-            
-
-        res = 0
-
-        for r in range(ROWS - 2):
-            for c in range(COLS - 2):
-                res += magic(r,c)
-
-        return res
+        # Make sure the sequence starts at one of the corners
+        return (
+            grid[row][col] % 2 == 0
+            and (
+                sequence.find(borderConverted) != -1
+                or sequenceReversed.find(borderConverted) != -1
+            )
+            and grid[row + 1][col + 1] == 5
+        )
