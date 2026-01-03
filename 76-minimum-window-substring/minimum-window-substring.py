@@ -1,33 +1,38 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        if t == "":
+        if len(s) < len(t):
             return ""
 
-        countT, window = {},{}
+        char_count = defaultdict(int)
 
         for c in t:
-            countT[c] = countT.get(c,0) + 1
+            char_count[c] += 1
 
-        have, need = 0, len(countT)
-        res, resLen = [-1, -1], float("inf")
-        l = 0
+        target_chars_remaining = len(t)
+        min_window = (0, float("inf"))
+        start_index = 0
 
-        for r in range(len(s)):
-            c = s[r]
-            window[c] = window.get(c,0) + 1
+        for end_index, ch in enumerate(s):
+            if char_count[ch] > 0:
+                target_chars_remaining -= 1
+            char_count[ch] -= 1
 
-            if c in countT and window[c] == countT[c]:
-                have += 1
+            if target_chars_remaining == 0:
+                while True:
+                    char_at_start = s[start_index]
+                    if char_count[char_at_start] == 0:
+                        break
+                    char_count[char_at_start] += 1
+                    start_index += 1
 
-            while have == need:
-                if (r-l + 1) < resLen:
-                    res = [l,r]
-                    resLen = (r - l + 1)
+                if end_index - start_index < min_window[1] - min_window[0]:
+                    min_window = (start_index, end_index)
+                
+                char_count[s[start_index]] += 1
+                target_chars_remaining += 1
+                start_index += 1
 
-                window[s[l]] -= 1
-                if s[l] in countT and window[s[l]] < countT[s[l]]:
-                    have -= 1
-                l += 1
+        return "" if min_window[1] > len(s) else s[min_window[0]: min_window[1] + 1]
 
-        l,r = res
-        return s[l:r+1] if resLen != float("inf") else ""
+        
+
