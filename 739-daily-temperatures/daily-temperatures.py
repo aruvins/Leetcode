@@ -8,8 +8,10 @@ class Solution:
             while stack and temperatures[stack[-1]] < temp:
                 idx = stack.pop()
                 res[idx] = i - idx
+
             stack.append(i)
 
         return res
+
 
         
