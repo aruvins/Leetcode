@@ -1,29 +1,34 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        top, bot = 0, len(matrix) - 1
+        if not matrix or not matrix[0]:
+            return False
 
-        # First binary search to find correct row
-        while top <= bot:
-            m = (top + bot) // 2
-            if matrix[m][0] <= target <= matrix[m][-1]:
+        top, bottom = 0, len(matrix) - 1
+
+        while top <= bottom:
+            m = (top + bottom) // 2
+
+            if target > matrix[m][-1]:
+                top = m + 1
+            elif target < matrix[m][0]:
+                bottom = m - 1
+            else:
                 row = m
                 break
-            elif matrix[m][0] > target:
-                bot = m - 1
-            else:
-                top = m + 1
         else:
-            return False  # No valid row found
+            return False
 
-        # Second binary search within the row
+            
         l, r = 0, len(matrix[row]) - 1
+
         while l <= r:
             m = (l + r) // 2
-            if matrix[row][m] == target:
-                return True
-            elif matrix[row][m] < target:
+
+            if target > matrix[row][m]:
                 l = m + 1
-            else:
+            elif target < matrix[row][m]:
                 r = m - 1
+            else:
+                return True
 
         return False
