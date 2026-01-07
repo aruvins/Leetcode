@@ -10,13 +10,10 @@ class Solution:
         l, r = 1, max(piles)
 
         while l < r:
-            k = (l+r)//2
-
-            if k_works(k):
-                r = k
+            m = (l + r) // 2
+            if k_works(m):
+                r = m
             else:
-                l = k + 1
+                l = m + 1
 
         return l
-
-            
