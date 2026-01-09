@@ -14,7 +14,6 @@ class Solution:
         q = deque([root])
 
         while q:
-
             for i in range(len(q)):
                 node = q.popleft()
                 if node.left:
@@ -22,8 +21,6 @@ class Solution:
                 if node.right:
                     q.append(node.right)
             level += 1
-
+        
         return level
-
-
         
