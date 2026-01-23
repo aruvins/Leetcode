@@ -6,19 +6,16 @@
 #         self.right = right
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
-        stack = [(root, float('-inf'))]
-        goodNodes = 0
+        def dfs(node, maxVal):
+            if not node:
+                return 0
 
-        while stack:
-            node, largest = stack.pop()
+            res = 1 if node.val >= maxVal else 0
+            maxVal = max(maxVal, node.val)
 
-            if node:
-                if largest <= node.val:
-                    goodNodes += 1
+            res += dfs(node.left, maxVal)
+            res += dfs(node.right, maxVal)
 
-                largest = max(largest, node.val)
+            return res
 
-                stack.append((node.left, largest))
-                stack.append((node.right, largest))
-
-        return goodNodes
+        return dfs(root, root.val)
