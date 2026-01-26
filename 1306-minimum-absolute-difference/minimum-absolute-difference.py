@@ -11,8 +11,6 @@ class Solution:
         for i in range(1, len(arr)):
             curMin = arr[i] - arr[i - 1]
             if curMin == minSoFar:
-                res.append([arr[i-1],arr[i]])
+                res.append([arr[i - 1], arr[i]])
 
         return res
-
-
