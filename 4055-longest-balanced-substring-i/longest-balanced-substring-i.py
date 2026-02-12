@@ -9,7 +9,8 @@ class Solution:
             for r in range(l, n):
                 freq[ord(s[r]) - 97] += 1
                 f = freq[ord(s[r]) - 97]
-                uniq += f == 1
+                if f == 1:
+                    uniq += 1
 
                 if f > maxF:
                     maxF = f
