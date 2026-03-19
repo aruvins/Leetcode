@@ -1,27 +1,23 @@
 class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        max_area = 0
-        m,n = len(grid),len(grid[0])
-        visited = set()
+        ROWS, COLS = len(grid), len(grid[0])
+        visit = set()
 
-        for i in range(m):
-            for j in range(n):
-                if grid[i][j] and (i,j) not in visited:
-                    area = 0
-                    stk = [(i,j)]
-                    visited.add((i,j))
+        def dfs(r,c):
+            if (r < 0 or r == ROWS or c <0 or c == COLS or
+                grid[r][c] == 0 or (r,c) in visit):
+                return 0
 
-                    while stk:
-                        new_i,new_j = stk.pop()
-                        area += 1
-                        
-                        for i_off, j_off in [(0,1),(1,0),(0,-1),(-1,0)]:
-                            r,c = new_i + i_off, new_j + j_off
+            visit.add((r,c))
+            return (1 + dfs(r + 1, c) +
+                        dfs(r - 1, c) +
+                        dfs(r, c + 1) +
+                        dfs(r, c - 1))
 
-                            if 0 <= r < m and 0 <= c < n and grid[r][c] and (r,c) not in visited:
-                                visited.add((r,c))
-                                stk.append((r,c))
-                
-                    max_area = max(area, max_area)
+        area = 0
+        for r in range(ROWS):
+            for c in range(COLS):
+                area = max(area, dfs(r,c))
 
-        return max_area
+
+        return area
