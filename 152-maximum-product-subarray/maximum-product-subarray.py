@@ -7,13 +7,10 @@ class Solution:
             if n == 0:
                 curMin, curMax = 1, 1
                 continue
-            
-            temp = curMax * n
+
+            tmp = n * curMax
             curMax = max(n * curMax, n * curMin, n)
-            curMin = min(temp, n * curMin, n)
+            curMin = min(tmp, n * curMin, n)
             res = max(res, curMax, curMin)
 
         return res
-
-
-
